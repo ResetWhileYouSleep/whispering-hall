@@ -1,0 +1,1220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Whispering Hall</title>
+
+<style>
+
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:black;
+font-family:Georgia,serif;
+cursor:default;
+}
+
+#world{
+position:relative;
+width:100vw;
+height:100vh;
+overflow:hidden;
+background:black;
+}
+
+.chamber{
+position:absolute;
+inset:0;
+opacity:.0;
+transition:opacity 3s ease;
+pointer-events:none;
+}
+
+.chamber.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.bg{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center center;
+filter:brightness(.72) contrast(1.08);
+
+animation:breath 42s ease-in-out infinite alternate;
+transform-origin:center;
+}
+
+
+
+.darkness{
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center,rgba(255,220,150,.05),rgba(0,0,0,.82)),
+linear-gradient(to bottom,rgba(0,0,0,.22),rgba(0,0,0,.72));
+}
+
+.depth{
+position:absolute;
+inset:-5%;
+background:
+radial-gradient(circle at 50% 60%,rgba(255,240,220,.03),transparent 40%);
+filter:blur(20px);
+animation:floatDepth 18s ease-in-out infinite alternate;
+}
+
+
+
+.dust{
+position:absolute;
+inset:0;
+background-image:
+radial-gradient(rgba(255,240,220,.07) 1px,transparent 1px);
+background-size:160px 160px;
+opacity:.24;
+animation:drift 120s linear infinite;
+}
+
+
+
+.sigil{
+position:absolute;
+opacity:.16;
+mix-blend-mode:screen;
+filter:blur(.2px) drop-shadow(0 0 18px rgba(255,210,140,.14));
+animation:awaken 12s ease-in-out infinite;
+pointer-events:none;
+}
+
+
+
+
+
+.whisper.visible{
+opacity:1;
+}
+
+.resonance{
+position:absolute;
+width:18vmin;
+height:18vmin;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,220,160,.10),rgba(0,0,0,0));
+left:50%;
+top:54%;
+transform:translate(-50%,-50%);
+animation:resonance 5s ease-in-out infinite;
+opacity:.24;
+transition:opacity 2s ease;
+}
+
+
+
+.hotspot{
+position:absolute;
+left:38%;
+top:40%;
+width:24%;
+height:24%;
+cursor:pointer;
+z-index:20;
+}
+
+.fade{
+position:absolute;
+inset:0;
+background:black;
+opacity:.0;
+pointer-events:none;
+transition:opacity 2.4s ease;
+z-index:100;
+}
+
+
+.returningflame{
+position:absolute;
+bottom:16%;
+left:50%;
+transform:translateX(-50%);
+width:8vmin;
+height:8vmin;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,180,100,.55),rgba(0,0,0,0));
+opacity:.0;
+animation:returning 14s ease-in-out infinite;
+filter:blur(2px);
+}
+
+
+
+@media(max-width:768px){
+
+.bg{
+object-position:center top;
+}
+
+
+
+.sigil{
+width:52vmin !important;
+top:42% !important;
+opacity:.22 !important;
+}
+
+.resonance{
+width:24vmin;
+height:24vmin;
+opacity:.35 !important;
+}
+
+.returningflame{
+width:14vmin;
+height:14vmin;
+bottom:18%;
+}
+
+.hotspot{
+left:28% !important;
+top:34% !important;
+width:44% !important;
+height:36% !important;
+}
+
+}
+
+
+
+@media(max-width:768px){
+
+.bg{
+object-position:center 28% !important;
+}
+
+
+
+.sigil{
+width:54vmin !important;
+top:44% !important;
+opacity:.34 !important;
+}
+
+.resonance{
+opacity:.55 !important;
+}
+
+}
+
+@media(orientation:landscape) and (max-width:950px){
+
+
+
+.sigil{
+top:50% !important;
+width:30vmin !important;
+}
+
+.bg{
+object-position:center 34% !important;
+}
+
+}
+
+
+
+
+
+
+
+25%{
+opacity:.04;
+filter:blur(12px);
+}
+
+55%{
+opacity:.22;
+filter:blur(7px);
+}
+
+78%{
+opacity:.64;
+filter:blur(2px);
+}
+
+100%{
+opacity:.84;
+filter:blur(0px);
+transform:translateX(-50%) translateY(0px);
+}
+
+}
+
+@media(orientation:landscape) and (max-width:950px){
+
+
+
+}
+
+
+/* Unified Sanctuary Whisper Engine */
+
+
+
+30%{
+opacity:.05;
+filter:blur(10px);
+}
+58%{
+opacity:.28;
+filter:blur(5px);
+}
+82%{
+opacity:.68;
+filter:blur(1px);
+}
+100%{
+opacity:.82;
+filter:blur(0px);
+transform:translateX(-50%) translateY(0px);
+}
+}
+
+@media(orientation:landscape) and (max-width:950px){
+
+}
+
+
+.whisper{
+position:absolute;
+bottom:12%;
+left:50%;
+transform:translateX(-50%);
+max-width:74%;
+text-align:center;
+color:#94704f !important;
+font-style:italic;
+font-size:.9rem;
+letter-spacing:.07em;
+line-height:1.9;
+opacity:0;
+filter:blur(12px);
+text-shadow:
+0 0 4px rgba(255,160,90,.03),
+0 0 10px rgba(255,130,70,.015);
+animation:memoryReveal 8.6s cubic-bezier(.19,1,.22,1) forwards !important;
+}
+
+@keyframes memoryReveal{
+0%{
+opacity:0;
+filter:blur(15px);
+transform:translateX(-50%) translateY(18px);
+}
+32%{
+opacity:.04;
+filter:blur(11px);
+}
+62%{
+opacity:.22;
+filter:blur(5px);
+}
+84%{
+opacity:.58;
+filter:blur(1px);
+}
+100%{
+opacity:.78;
+filter:blur(0px);
+transform:translateX(-50%) translateY(0px);
+}
+}
+
+@media(orientation:landscape) and (max-width:950px){
+
+.whisper{
+bottom:6%;
+max-width:54%;
+font-size:.8rem;
+}
+
+/* Veiled Archive - move below candle cluster */
+body.archive-mode .whisper{
+bottom:2.5% !important;
+}
+
+/* Silent Index - move below pedestal/book */
+body.index-mode .whisper{
+bottom:2.5% !important;
+}
+
+}
+
+
+html,body{
+min-height:100svh;
+min-height:100dvh;
+overflow-x:hidden;
+}
+
+.scene,
+.chamber,
+.hero,
+.background{
+min-height:100svh !important;
+min-height:100dvh !important;
+height:100svh !important;
+height:100dvh !important;
+}
+
+/* Chrome mobile cinematic framing */
+@media(max-width:600px){
+
+body.archive-mode .whisper{
+
+color:#e8ddd2 !important;
+
+opacity:.95 !important;
+
+bottom:13% !important;
+
+font-size:1.22rem !important;
+
+max-width:72% !important;
+
+text-shadow:
+0 0 1px rgba(255,245,235,.08),
+0 1px 4px rgba(0,0,0,.88)
+
+!important;
+
+letter-spacing:.01em;
+
+filter:none !important;
+
+}
+
+.whisper{
+bottom:9.5% !important;
+max-width:78% !important;
+font-size:.88rem !important;
+line-height:1.7 !important;
+padding:0 6vw;
+text-align:center !important;
+}
+
+.sigils,
+.symbol,
+.overlay-symbol,
+.center-sigil{
+transform:scale(.88) !important;
+opacity:.32 !important;
+}
+
+}
+
+/* Narrow mobile safeguard */
+@media(max-width:420px){
+
+.whisper{
+bottom:10.5% !important;
+max-width:82% !important;
+font-size:.82rem !important;
+}
+
+.sigils,
+.symbol,
+.overlay-symbol,
+.center-sigil{
+transform:scale(.82) !important;
+}
+
+}
+
+
+/* ===== TRUE HALL WITHOUT ECHOES PROFILE ===== */
+
+body.hall-mode .darkness{
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.02),
+rgba(0,0,0,.12)
+)!important;
+}
+
+body.hall-mode .sigil,
+body.hall-mode .resonance,
+body.hall-mode .returningflame{
+display:none !important;
+}
+
+body.hall-mode .dust{
+opacity:.08 !important;
+}
+
+body.hall-mode .bg{
+filter:
+brightness(.94)
+contrast(1.06)
+!important;
+}
+
+body.hall-mode .whisper{
+font-size:1rem !important;
+color:#d9b089 !important;
+opacity:.88 !important;
+text-shadow:
+0 0 8px rgba(255,220,180,.12),
+0 0 2px rgba(255,235,205,.16),
+0 0 6px rgba(255,190,120,.05),
+0 2px 6px rgba(0,0,0,.88)
+!important;
+}
+
+
+/* ===== WHISPERING HALL PROFILE ===== */
+
+body.whispering-mode .darkness{
+
+background:
+
+radial-gradient(
+circle at center,
+rgba(255,220,150,.06),
+rgba(0,0,0,.46)
+),
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.08),
+rgba(0,0,0,.36)
+)
+
+!important;
+
+}
+
+/* preserve architectural readability */
+
+body.whispering-mode .bg{
+
+filter:
+brightness(.90)
+contrast(1.03)
+saturate(.96)
+
+!important;
+
+}
+
+/* integrated sacred geometry */
+
+body.whispering-mode .sigil{
+
+opacity:.10 !important;
+
+filter:
+blur(.12px)
+drop-shadow(
+0 0 8px rgba(255,210,140,.05)
+)
+
+!important;
+
+animation:
+awaken 18s ease-in-out infinite !important;
+
+}
+
+/* restrained living resonance */
+
+body.whispering-mode .resonance{
+
+opacity:.14 !important;
+
+transition:
+opacity 3.6s ease !important;
+
+}
+
+/* softer particles */
+
+body.whispering-mode .dust{
+
+opacity:.12 !important;
+
+}
+
+/* preserve whisper readability */
+
+body.whispering-mode .whisper{
+
+color:#cda27d !important;
+
+text-shadow:
+0 0 2px rgba(255,235,205,.10),
+0 0 6px rgba(255,190,120,.04),
+0 2px 8px rgba(0,0,0,.88)
+
+!important;
+
+}
+
+
+/* ===== VEILED ARCHIVE PROFILE ===== */
+
+body.archive-mode .bg{
+
+filter:
+brightness(1.02)
+contrast(1.10)
+saturate(1.00)
+
+!important;
+
+}
+
+body.archive-mode .darkness{
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.01),
+rgba(0,0,0,.18)
+),
+
+radial-gradient(
+circle at center,
+rgba(255,210,140,.04),
+transparent 74%
+)
+
+!important;
+
+}
+
+body.archive-mode .sigil{
+
+opacity:.028 !important;
+
+filter:
+blur(.45px)
+drop-shadow(
+0 0 6px rgba(255,210,150,.02)
+)
+
+!important;
+
+animation:
+awaken 42s ease-in-out infinite !important;
+
+}
+
+body.archive-mode .resonance{
+
+opacity:.025 !important;
+
+mix-blend-mode:screen !important;
+
+}
+
+body.archive-mode .dust{
+
+opacity:.045 !important;
+
+}
+
+body.archive-mode .whisper{
+
+color:#d7b89a !important;
+
+opacity:.90 !important;
+
+bottom:9.5% !important;
+
+font-size:1.05rem !important;
+
+max-width:68% !important;
+
+line-height:1.55 !important;
+
+text-shadow:
+0 1px 4px rgba(0,0,0,.90);
+
+letter-spacing:.01em;
+
+filter:none !important;
+
+}
+
+body.archive-mode .veil{
+
+opacity:.08 !important;
+
+}
+
+body.archive-mode .particles{
+
+opacity:.025 !important;
+
+}
+
+
+/* ===== SILENT INDEX PROFILE ===== */
+
+body.index-mode .bg{
+
+filter:
+brightness(.94)
+contrast(1.08)
+saturate(1.02)
+
+!important;
+
+}
+
+body.index-mode .darkness{
+
+background:
+
+linear-gradient(
+to bottom,
+rgba(0,0,0,.04),
+rgba(0,0,0,.32)
+),
+
+radial-gradient(
+circle at center,
+rgba(120,170,255,.05),
+transparent 75%
+)
+
+!important;
+
+}
+
+body.index-mode .sigil{
+
+opacity:.08 !important;
+
+filter:
+blur(.15px)
+drop-shadow(
+0 0 10px rgba(180,220,255,.08)
+)
+
+!important;
+
+animation:
+awaken 22s ease-in-out infinite !important;
+
+}
+
+body.index-mode .resonance{
+
+opacity:.12 !important;
+
+mix-blend-mode:screen !important;
+
+}
+
+body.index-mode .dust{
+
+opacity:.10 !important;
+
+}
+
+body.index-mode .whisper{
+
+color:#d8c8b8 !important;
+
+opacity:.92 !important;
+
+bottom:5.5% !important;
+
+font-size:1rem !important;
+
+max-width:70% !important;
+
+line-height:1.6 !important;
+
+letter-spacing:.02em;
+
+text-shadow:
+0 1px 4px rgba(0,0,0,.88);
+
+filter:none !important;
+
+}
+
+
+/* ===== CHAMBER OF NAMES PROFILE ===== */
+
+body.names-mode .bg{
+filter:
+brightness(1.00)
+contrast(1.08)
+saturate(1.02)
+!important;
+}
+
+body.names-mode .darkness{
+background:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.02),
+rgba(0,0,0,.24)
+),
+radial-gradient(
+circle at center,
+rgba(255,210,140,.05),
+transparent 75%
+)
+!important;
+}
+
+body.names-mode .sigil{
+opacity:.06 !important;
+filter:
+blur(.15px)
+drop-shadow(0 0 10px rgba(255,220,160,.08))
+!important;
+}
+
+body.names-mode .resonance{
+opacity:.08 !important;
+}
+
+body.names-mode .dust{
+opacity:.08 !important;
+}
+
+body.names-mode .whisper{
+color:#e4d2c0 !important;
+opacity:.92 !important;
+bottom:6.5% !important;
+font-size:.95rem !important;
+max-width:70% !important;
+line-height:1.6 !important;
+letter-spacing:.02em;
+text-shadow:0 1px 4px rgba(0,0,0,.88);
+filter:none !important;
+}
+
+@media(orientation:landscape) and (max-width:950px){
+body.names-mode .whisper{
+bottom:3.5% !important;
+max-width:90% !important;
+white-space:nowrap !important;
+}
+body.hall-mode .whisper{
+max-width:90% !important;
+white-space:nowrap !important;
+}
+body.archive-mode .whisper{
+bottom:0% !important;
+}
+}
+
+@media(max-width:600px){
+body.names-mode .whisper{
+bottom:10% !important;
+font-size:1.05rem !important;
+max-width:60% !important;
+}
+body.hall-mode .whisper{
+font-size:.95rem !important;
+max-width:92% !important;
+white-space:normal !important;
+}
+}
+
+
+/* Responsive whisper line breaks */
+.mobile-break{display:none;}
+@media(max-width:600px){
+  .mobile-break{display:inline;}
+  body.names-mode .whisper,
+  body.hall-mode .whisper{
+    max-width:80% !important;
+    font-size:.95rem !important;
+    white-space:normal !important;
+  }
+}
+@media(orientation:landscape) and (max-width:950px){
+  .mobile-break{display:none !important;}
+  body.names-mode .whisper,
+  body.hall-mode .whisper{
+    white-space:nowrap !important;
+    max-width:95% !important;
+  }
+}
+
+
+/* FINAL HALL WITHOUT ECHOES FIX */
+@media (max-width:600px){
+  body.hall-mode .whisper{
+    width:90vw !important;
+    max-width:none !important;
+    white-space:nowrap !important;
+    font-size:.95rem !important;
+  }
+  body.hall-mode .whisper br{
+    display:block !important;
+  }
+}
+
+@media (orientation:landscape) and (max-width:950px){
+  body.hall-mode .whisper{
+    width:100vw !important;
+    max-width:none !important;
+    white-space:nowrap !important;
+  }
+  body.hall-mode .whisper br{
+    display:none !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div id="world">
+<div class="fade" id="fade"></div>
+</div>
+
+<audio id="audio" loop preload="auto"></audio>
+
+<script>
+
+const chambers = [
+{
+title:"Whispering Hall",
+image:"whispering-hall.jpg",
+audio:"whispering_hall_refined.mp3",
+sigil:"Veiled Sigil Symbol(1).jpeg",
+whisper:"Some halls remember who enters."
+},
+{
+title:"The Veiled Archive",
+image:"veiled-archive.jpg",
+audio:"veiled_archive_refined.mp3",
+sigil:"Veiled Sigil(1).jpeg",
+whisper:"Not all things reveal themselves."
+},
+{
+title:"The Silent Index",
+image:"silent-index.jpg",
+audio:"silent_index_refined.mp3",
+sigil:"Silent Index Markings(1).jpeg",
+whisper:"Some knowledge waits in silence."
+},
+{
+title:"The Chamber of Names",
+image:"chamber-of-names.jpg",
+audio:"chamber_of_names_refined.mp3",
+sigil:"Remembering The Flame Sigil.jpeg",
+whisper:"What is remembered<span class=\"mobile-break\"><br></span> remains."
+},
+{
+title:"Hall Without Echoes",
+image:"hall-without-echoes.jpg",
+audio:"hall_without_echoes_refined.mp3",
+sigil:"Hall Without Echoes Glyps(1).jpeg",
+whisper:"Some halls remember <br>who remains."
+}
+];
+
+const world=document.getElementById('world');
+const fade=document.getElementById('fade');
+const audio=document.getElementById('audio');
+
+let current = parseInt(sessionStorage.getItem('activeChamber') || '0');
+let activated=false;
+
+function createChambers(){
+
+chambers.forEach((c,i)=>{
+
+const chamber=document.createElement('div');
+chamber.className='chamber';
+if(i===0) chamber.classList.add('active');
+
+chamber.innerHTML=`
+
+<img class="bg" src="${c.image}">
+<div class="darkness"></div>
+<div class="depth"></div>
+<div class="dust"></div>
+
+<img class="sigil" src="${c.sigil}"
+style="
+width:34vmin;
+left:50%;
+top:48%;
+transform:translate(-50%,-50%);
+position:absolute;
+">
+
+<div class="resonance"></div>
+
+<div class="returningflame"></div>
+
+
+<div class="hotspot"></div>
+
+<div class="whisper">${c.whisper}</div>
+
+`;
+
+world.prepend(chamber);
+
+c.element=chamber;
+
+setTimeout(()=>{
+chamber.querySelector('.whisper').classList.add('visible');
+},1200 + (i*250));
+
+chamber.querySelector('.hotspot').onclick=()=>{
+descend();
+};
+
+});
+
+}
+
+
+function applyChamberProfile(){
+
+const title = chambers[current].title.toLowerCase();
+
+document.body.classList.remove(
+'hall-mode',
+'whispering-mode',
+'archive-mode',
+'index-mode',
+'names-mode'
+);
+
+if(title.includes('hall without echoes')){
+
+document.body.classList.add('hall-mode');
+
+}
+
+if(title.includes('whispering hall')){
+
+document.body.classList.add('whispering-mode');
+
+}
+
+if(title.includes('veiled archive')){
+
+document.body.classList.add('archive-mode');
+
+}
+
+if(title.includes('silent index')){
+
+document.body.classList.add('index-mode');
+
+}
+
+if(title.includes('chamber of names')){
+
+document.body.classList.add('names-mode');
+
+}
+
+}
+
+
+function activateAudio(){
+
+if(activated) return;
+
+audio.src=chambers[current].audio;
+audio.volume=.62;
+audio.play();
+
+activated=true;
+
+}
+
+function descend(){
+
+fade.style.opacity='1';
+
+setTimeout(()=>{
+
+chambers[current].element.classList.remove('active');
+
+current=(current+1)%chambers.length;
+sessionStorage.setItem('activeChamber', current);
+
+chambers[current].element.classList.add('active');
+
+applyChamberProfile();
+
+if(activated){
+
+audio.src=chambers[current].audio;
+audio.play();
+
+}
+
+fade.style.opacity='0';
+
+},1800);
+
+}
+
+document.body.addEventListener('pointerdown',()=>{
+
+activateAudio();
+
+},{once:true});
+
+createChambers();
+
+setTimeout(()=>{
+if(chambers[current] && chambers[current].element){
+document.querySelectorAll('.chamber').forEach(c=>c.classList.remove('active'));
+chambers[current].element.classList.add('active');
+applyChamberProfile();
+}
+},50);
+
+
+document.querySelectorAll('.hotspot').forEach(h=>{
+
+h.addEventListener('mouseenter',()=>{
+const r=h.parentElement.querySelector('.resonance');
+if(r) r.style.opacity='.52';
+});
+
+h.addEventListener('touchstart',()=>{
+const r=h.parentElement.querySelector('.resonance');
+if(r) r.style.opacity='.62';
+});
+
+});
+
+
+
+
+document.querySelectorAll('.resonance').forEach(r=>{
+
+setInterval(()=>{
+
+r.style.opacity='.72';
+
+setTimeout(()=>{
+r.style.opacity='.38';
+},2400);
+
+},7000);
+
+});
+
+
+
+window.addEventListener('beforeunload', ()=>{
+sessionStorage.setItem('activeChamber', current);
+});
+
+document.addEventListener('visibilitychange', ()=>{
+sessionStorage.setItem('activeChamber', current);
+});
+
+
+// Sanctuary chamber persistence
+sessionStorage.setItem('lastChamberPage', 'index.html');
+
+window.addEventListener('pageshow', () => {
+const saved = sessionStorage.getItem('lastChamberPage');
+if(saved && saved !== window.location.pathname.split('/').pop()) {
+window.location.replace(saved);
+}
+});
+
+document.addEventListener('visibilitychange', () => {
+sessionStorage.setItem('lastChamberPage', 'index.html');
+});
+
+
+// Route-based chamber persistence
+sessionStorage.setItem('lastChamberPage', 'index.html');
+
+window.addEventListener('pageshow', () => {
+const expected = sessionStorage.getItem('lastChamberPage');
+
+if(expected &&
+window.location.pathname.split('/').pop() !== expected) {
+window.location.href = expected;
+}
+});
+
+window.addEventListener('beforeunload', () => {
+sessionStorage.setItem('lastChamberPage', 'index.html');
+});
+
+
+// subtle resonance pacing polish
+document.querySelectorAll('.resonance').forEach(r=>{
+
+setInterval(()=>{
+
+r.style.transition='opacity 4.8s ease';
+r.style.opacity='.62';
+
+setTimeout(()=>{
+r.style.opacity='.34';
+},3200);
+
+},9200);
+
+});
+
+
+// synchronized whisper emergence
+window.addEventListener('load',()=>{
+
+setTimeout(()=>{
+
+document.querySelectorAll('.whisper').forEach(w=>{
+w.style.opacity='';
+w.style.animationPlayState='running';
+});
+
+},900);
+
+});
+
+</script>
+
+</body>
+</html>
+
+
+@media(max-width:600px){
+body.names-mode .whisper{
+max-width:48% !important;
+font-size:1.2rem !important;
+}
+body.hall-mode .whisper{
+max-width:75% !important;
+font-size:.95rem !important;
+white-space:normal !important;
+}
+}
+
+<style id="chatgpt-fix-temp"></style>
