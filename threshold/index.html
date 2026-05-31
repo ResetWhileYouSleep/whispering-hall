@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>The Threshold Opens</title>
 
 <style>
@@ -38,24 +39,6 @@ align-items:center;
 justify-content:center;
 
 text-align:center;
-
-animation:gatewayGlow 8s ease-in-out infinite;
-}
-
-@keyframes gatewayGlow{
-
-0%{
-filter:brightness(1);
-}
-
-50%{
-filter:brightness(1.15);
-}
-
-100%{
-filter:brightness(1);
-}
-
 }
 
 .overlay{
@@ -65,55 +48,161 @@ inset:0;
 background:
 linear-gradient(
 to bottom,
-rgba(0,0,0,.45),
-rgba(0,0,0,.55),
-rgba(0,0,0,.78)
+rgba(0,0,0,.50),
+rgba(0,0,0,.62),
+rgba(0,0,0,.82)
 );
+
+z-index:0;
+}
+
+.door-glow{
+
+position:absolute;
+
+left:50%;
+top:48%;
+
+width:55vw;
+height:55vw;
+
+max-width:700px;
+max-height:700px;
+
+transform:translate(-50%,-50%);
+
+background:
+radial-gradient(
+circle,
+rgba(255,195,110,.25) 0%,
+rgba(255,195,110,.12) 30%,
+transparent 70%
+);
+
+animation:
+doorPulse
+8s
+ease-in-out
+infinite;
+
+pointer-events:none;
+
+z-index:1;
+
+}
+
+@keyframes doorPulse{
+
+0%{
+opacity:.15;
+transform:
+translate(-50%,-50%)
+scale(.95);
+}
+
+50%{
+opacity:.85;
+transform:
+translate(-50%,-50%)
+scale(1.10);
+}
+
+100%{
+opacity:.15;
+transform:
+translate(-50%,-50%)
+scale(.95);
+}
+
 }
 
 .content{
+
 position:relative;
-z-index:2;
+z-index:3;
 
-max-width:720px;
+max-width:760px;
 
-padding:40px 24px;
-padding-top:18vh;
+padding-left:30px;
+padding-right:30px;
+
+padding-top:12vh;
+padding-bottom:10vh;
+
 }
 
 .logo{
-font-size:.8rem;
-letter-spacing:4px;
-margin-bottom:24px;
-opacity:.9;
+
+font-size:.9rem;
+
+letter-spacing:8px;
+
+margin-bottom:48px;
+
+opacity:.85;
+
 }
 
 h1{
-font-size:clamp(2rem,5vw,4rem);
+
+font-size:
+clamp(
+2.5rem,
+6vw,
+4.6rem
+);
+
 font-weight:400;
+
 line-height:1.05;
-margin-bottom:28px;
+
+margin-bottom:48px;
+
 }
 
 .text{
-font-size:clamp(1rem,2vw,1.1rem);
-line-height:1.9;
+
+font-size:
+clamp(
+1.05rem,
+2vw,
+1.2rem
+);
+
+line-height:2.2;
+
 }
 
 .star{
-font-size:1.5rem;
-margin:24px 0;
+
+font-size:2rem;
+
+margin:
+48px
+0;
+
+opacity:.95;
+
 }
 
 .btn{
 
 display:inline-block;
 
-margin-top:36px;
+margin-top:50px;
 
-padding:18px 52px;
+padding:
+18px
+42px;
 
-color:#f5e6d3;
+background:
+linear-gradient(
+180deg,
+rgba(190,150,80,.95),
+rgba(120,90,35,.95)
+);
+
+color:#fff7e8;
 
 text-decoration:none;
 
@@ -121,53 +210,47 @@ font-size:1.15rem;
 
 letter-spacing:.5px;
 
-background:
-rgba(245,230,211,.04);
+border:none;
 
-border:
-1px solid
-rgba(245,230,211,.35);
+border-radius:999px;
 
 box-shadow:
-0 0 8px rgba(245,230,211,.08),
-inset 0 0 12px rgba(245,230,211,.05);
 
-position:relative;
+0 0 12px
+rgba(255,200,120,.35),
+
+0 0 35px
+rgba(255,200,120,.20),
+
+inset 0 1px 0
+rgba(255,255,255,.25);
 
 transition:all .4s ease;
 
 }
 
-.btn::before{
-content:"✦";
-margin-right:12px;
-opacity:.8;
-}
-
-.btn::after{
-content:"✦";
-margin-left:12px;
-opacity:.8;
-}
-
 .btn:hover{
 
-background:
-rgba(245,230,211,.08);
-
-border-color:
-rgba(245,230,211,.65);
+transform:translateY(-2px);
 
 box-shadow:
-0 0 18px rgba(245,230,211,.15),
-inset 0 0 16px rgba(245,230,211,.08);
+
+0 0 18px
+rgba(255,220,140,.45),
+
+0 0 45px
+rgba(255,220,140,.25);
 
 }
 
 .secondary{
-margin-top:18px;
+
+margin-top:24px;
+
 font-size:.9rem;
+
 opacity:.6;
+
 }
 
 audio{
@@ -192,7 +275,15 @@ padding-bottom:60px;
 @media (max-width:768px){
 
 .content{
-padding-top:18vh;
+padding-top:14vh;
+}
+
+.logo{
+margin-bottom:40px;
+}
+
+h1{
+margin-bottom:40px;
 }
 
 }
@@ -210,6 +301,8 @@ padding-top:18vh;
 <section class="hero">
 
 <div class="overlay"></div>
+
+<div class="door-glow"></div>
 
 <div id="content" class="content"></div>
 
@@ -262,9 +355,8 @@ The chambers await.
 </div>
 
 <p>
-Beyond this doorway lie
-chambers reserved for those
-who chose to continue.
+Beyond this doorway lie chambers
+reserved for those who chose to continue.
 </p>
 
 <br>
@@ -282,7 +374,7 @@ There is no need to hurry.
 <a
 class="btn"
 href="${destination}">
-Enter the Inner Sanctuary
+❦ Enter the Sanctuary ❦
 </a>
 
 `;
@@ -308,8 +400,7 @@ TRAVELER
 <div class="text">
 
 <p>
-The Archive recognizes
-your return.
+The Archive recognizes your return.
 </p>
 
 <p>
@@ -325,9 +416,7 @@ Some doors open only once.
 </p>
 
 <p>
-Others remain open for
-those who remember
-the way.
+Others remain open for those who remember the way.
 </p>
 
 </div>
@@ -335,7 +424,7 @@ the way.
 <a
 class="btn"
 href="${destination}">
-Continue Your Journey
+❦ Continue Your Journey ❦
 </a>
 
 <div class="secondary">
@@ -369,11 +458,11 @@ let volume = 0;
 const fade =
 setInterval(()=>{
 
-volume += 0.005;
+volume += 0.01;
 
-if(volume >= 0.18){
+if(volume >= 0.30){
 
-volume = 0.18;
+volume = 0.30;
 
 clearInterval(fade);
 
@@ -381,7 +470,7 @@ clearInterval(fade);
 
 audio.volume = volume;
 
-},200);
+},300);
 
 }
 
