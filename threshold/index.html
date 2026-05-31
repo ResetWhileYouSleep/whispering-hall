@@ -466,11 +466,121 @@ margin-bottom:40px;
 
 }
 
+}
+
+}
+
+/* Sanctuary Ember Dust */
+
+.embers{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:1;
+}
+
+.embers span{
+    position:absolute;
+    bottom:-20px;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:rgba(255,220,150,.65);
+
+    box-shadow:
+      0 0 8px rgba(255,220,150,.55);
+
+    animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+
+    from{
+        transform:
+        translateY(0)
+        translateX(0);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.6;
+    }
+
+    85%{
+        opacity:.4;
+    }
+
+    to{
+        transform:
+        translateY(-100vh)
+        translateX(30px);
+
+        opacity:0;
+    }
+}
+
+.embers span:nth-child(1){
+left:42%;
+animation-duration:18s;
+}
+
+.embers span:nth-child(2){
+left:48%;
+animation-duration:22s;
+}
+
+.embers span:nth-child(3){
+left:52%;
+animation-duration:20s;
+}
+
+.embers span:nth-child(4){
+left:57%;
+animation-duration:24s;
+}
+
+.embers span:nth-child(5){
+left:45%;
+animation-duration:26s;
+}
+
+.embers span:nth-child(6){
+left:54%;
+animation-duration:19s;
+}
+
+.embers span:nth-child(7){
+left:50%;
+animation-duration:28s;
+}
+
+.embers span:nth-child(8){
+left:60%;
+animation-duration:23s;
+}
+
 </style>
+
 
 </head>
 
 <body>
+
+<div class="embers">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
 <audio
 id="gatewayAudio"
