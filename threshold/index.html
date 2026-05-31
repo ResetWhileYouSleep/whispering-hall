@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Threshold Opens</title>
 
 <style>
@@ -40,7 +39,7 @@ justify-content:center;
 
 text-align:center;
 
-animation:gatewayGlow 12s ease-in-out infinite;
+animation:gatewayGlow 8s ease-in-out infinite;
 }
 
 @keyframes gatewayGlow{
@@ -50,7 +49,7 @@ filter:brightness(1);
 }
 
 50%{
-filter:brightness(1.08);
+filter:brightness(1.15);
 }
 
 100%{
@@ -107,27 +106,62 @@ margin:24px 0;
 }
 
 .btn{
+
 display:inline-block;
 
 margin-top:36px;
 
-padding:16px 34px;
-
-border:1px solid rgba(255,255,255,.35);
-
-background:rgba(255,255,255,.04);
+padding:18px 52px;
 
 color:#f5e6d3;
 
 text-decoration:none;
 
-transition:.3s;
+font-size:1.15rem;
 
-letter-spacing:1px;
+letter-spacing:.5px;
+
+background:
+rgba(245,230,211,.04);
+
+border:
+1px solid
+rgba(245,230,211,.35);
+
+box-shadow:
+0 0 8px rgba(245,230,211,.08),
+inset 0 0 12px rgba(245,230,211,.05);
+
+position:relative;
+
+transition:all .4s ease;
+
+}
+
+.btn::before{
+content:"✦";
+margin-right:12px;
+opacity:.8;
+}
+
+.btn::after{
+content:"✦";
+margin-left:12px;
+opacity:.8;
 }
 
 .btn:hover{
-background:rgba(255,255,255,.10);
+
+background:
+rgba(245,230,211,.08);
+
+border-color:
+rgba(245,230,211,.65);
+
+box-shadow:
+0 0 18px rgba(245,230,211,.15),
+inset 0 0 16px rgba(245,230,211,.08);
+
 }
 
 .secondary{
@@ -158,12 +192,13 @@ padding-bottom:60px;
 @media (max-width:768px){
 
 .content{
-padding-top:22vh;
+padding-top:18vh;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -300,7 +335,7 @@ the way.
 <a
 class="btn"
 href="${destination}">
-Continue Journey
+Continue Your Journey
 </a>
 
 <div class="secondary">
@@ -334,7 +369,7 @@ let volume = 0;
 const fade =
 setInterval(()=>{
 
-volume += 0.02;
+volume += 0.005;
 
 if(volume >= 0.18){
 
@@ -346,7 +381,7 @@ clearInterval(fade);
 
 audio.volume = volume;
 
-},150);
+},200);
 
 }
 
