@@ -476,23 +476,26 @@ margin-bottom:40px;
     position:fixed;
     inset:0;
     pointer-events:none;
+    z-index:2;
     overflow:hidden;
-    z-index:1;
 }
 
 .embers span{
     position:absolute;
     bottom:-20px;
 
-    width:4px;
-    height:4px;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
+    background:#ffd27a;
+    box-shadow:0 0 10px #ffd27a;
+    opacity:.8;
 
-    background:rgba(255,220,150,.65);
+    background:rgba(255,220,150,.95);
 
     box-shadow:
-      0 0 8px rgba(255,220,150,.55);
+    0 0 16px rgba(255,220,150,.95);
 
     animation:floatUp linear infinite;
 }
