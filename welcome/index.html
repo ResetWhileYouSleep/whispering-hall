@@ -33,9 +33,7 @@ letter-spacing:.02em; transition:.3s ease;}
 <div class="embers"><span style="left:22%;animation-duration:26s"></span><span style="left:45%;animation-duration:28s"></span><span style="left:66%;animation-duration:20s"></span></div>
 <div class="hero"><img src="welcome-sanctuary.jpeg"></div>
 <div class="wrap">
-<div class="intro">
-<a href="#traveler-guide" class="guide-link"> ✦ First visit? Begin with the Traveler's Guide. </a></div>
-<details id="traveler-guide" class="guide-card">
+<div class="intro"> ✦ First visit? Begin with the Traveler's Guide.</div>
 <details><summary>❦ Traveler's Guide ❦</summary><div class="guide">The Sanctuary is designed to accompany your Reset While You Sleep journey.
 
 Rather than rushing through every chamber at once, allow the chambers to unfold gradually over time.
@@ -212,19 +210,5 @@ const audio=document.getElementById('gatewayAudio');let started=false;
 function startAudio(){if(started)return;started=true;audio.volume=.08;audio.play().catch(()=>{});let v=.08;const fade=setInterval(()=>{v+=.01;if(v>=.22){v=.45;clearInterval(fade)}audio.volume=v;},300);}
 document.addEventListener('touchstart',startAudio,{once:true});
 document.addEventListener('click',startAudio,{once:true});
-</script>
-<script>
-document.getElementById('openGuide').addEventListener('click', function(e){
-    e.preventDefault();
-
-    const guide = document.getElementById('traveler-guide');
-
-    guide.open = true;
-
-    guide.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
-});
 </script>
 </body></html>
