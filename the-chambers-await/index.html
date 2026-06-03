@@ -672,6 +672,8 @@ const destination =
 
 'https://resetwhileyousleep.github.io/whispering-hall/welcome';
 
+const sanctuaryKey = "314628";
+
 const content =
 
 document.getElementById(
@@ -760,10 +762,9 @@ There is no need to hurry.
 </div>
 
 <a
-
 class="btn"
-
-href="${destination}">
+href="#"
+onclick="requestKey(event)">
 
 ❦ Enter the Sanctuary ❦
 
@@ -832,16 +833,40 @@ Others remain open for those who remember the way.
 </div>
 
 <a
-
 class="btn"
-
-href="${destination}">
+href="#"
+onclick="requestKey(event)">
 
 ❦ Continue Your Journey ❦
 
 </a>
 
 `;
+
+}
+
+function requestKey(event){
+
+event.preventDefault();
+
+const entered = prompt(
+"Enter your Sanctuary Key"
+);
+
+if(entered === sanctuaryKey){
+
+window.location.href = destination;
+
+}else if(
+entered !== null &&
+entered !== ""
+){
+
+alert(
+"The Threshold remains closed."
+);
+
+}
 
 }
 
