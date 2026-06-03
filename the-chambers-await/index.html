@@ -616,6 +616,88 @@ margin-bottom:40px;
 .embers span:nth-child(15){width:6px;height:6px;}
 .embers span:nth-child(16){width:8px;height:8px;}
 
+/* Sanctuary Key Modal */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.88);
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+z-index:9999;
+}
+
+.modal-box{
+
+width:min(90%,500px);
+
+background:#080603;
+
+border:1px solid #6b4b1f;
+
+border-radius:28px;
+
+padding:40px 30px;
+
+text-align:center;
+
+box-shadow:
+0 0 40px rgba(255,200,120,.12);
+
+}
+
+.modal-title{
+
+font-size:2rem;
+
+color:#e4c98b;
+
+margin-bottom:20px;
+
+}
+
+.modal-text{
+
+line-height:1.9;
+
+margin-bottom:24px;
+
+}
+
+.modal input{
+
+width:100%;
+
+padding:16px;
+
+background:#120d08;
+
+border:1px solid #6b4b1f;
+
+border-radius:14px;
+
+color:#f5e6d3;
+
+font-size:1.1rem;
+
+text-align:center;
+
+margin-bottom:20px;
+}
+
+.modal-error{
+
+color:#d79d7a;
+
+min-height:24px;
+
+margin-bottom:18px;
+}
+
 </style>
 
 
@@ -623,6 +705,49 @@ margin-bottom:40px;
 
 <body>
 
+<div id="sanctuaryModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-title">
+
+✦ THRESHOLD OPENS ✦
+
+</div>
+
+<div class="modal-text">
+
+The passage stands before you.
+
+<br><br>
+
+Enter your Sanctuary Key.
+
+</div>
+
+<input
+type="password"
+id="sanctuaryInput"
+placeholder="Sanctuary Key">
+
+<div
+id="sanctuaryError"
+class="modal-error">
+
+</div>
+
+<button
+class="btn"
+onclick="checkSanctuaryKey()">
+
+❦ Open the Threshold ❦
+
+</button>
+
+</div>
+
+</div>
+  
 <div class="embers">
   <span></span>
   <span></span>
@@ -849,22 +974,32 @@ function requestKey(event){
 
 event.preventDefault();
 
-const entered = prompt(
-"Enter your Sanctuary Key"
-);
+document.getElementById(
+'sanctuaryModal'
+).style.display='flex';
 
-if(entered === sanctuaryKey){
+}
 
-window.location.href = destination;
+function checkSanctuaryKey(){
 
-}else if(
-entered !== null &&
-entered !== ""
+const entered =
+document.getElementById(
+'sanctuaryInput'
+).value;
+
+if(
+entered === sanctuaryKey
 ){
 
-alert(
-"The Threshold remains closed."
-);
+window.location.href =
+destination;
+
+}else{
+
+document.getElementById(
+'sanctuaryError'
+).textContent =
+'The Threshold remains closed.';
 
 }
 
