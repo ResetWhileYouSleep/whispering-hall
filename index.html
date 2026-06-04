@@ -895,6 +895,16 @@ white-space:normal !important;
 
 <script>
 
+if(
+localStorage.getItem(
+"sanctuary_verified"
+) !== "true"
+){
+
+window.location.href =
+"/whispering-hall/the-chambers-await/";
+}
+
 const chambers = [
 {
 title:"Whispering Hall",
