@@ -225,6 +225,17 @@ The chambers will be here when you return.
 </div>
 <audio id="gatewayAudio" loop><source src="welcome-sanctuary.mp3" type="audio/mpeg"></audio>
 <script>
+
+if(
+localStorage.getItem(
+"sanctuary_verified"
+) !== "true"
+){
+
+window.location.href =
+"/whispering-hall/the-chambers-await/";
+}
+  
 const audio=document.getElementById('gatewayAudio');let started=false;
 function startAudio(){if(started)return;started=true;audio.volume=.08;audio.play().catch(()=>{});let v=.08;const fade=setInterval(()=>{v+=.01;if(v>=.22){v=.45;clearInterval(fade)}audio.volume=v;},300);}
 document.addEventListener('touchstart',startAudio,{once:true});
