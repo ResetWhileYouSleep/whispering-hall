@@ -883,10 +883,58 @@ white-space:normal !important;
   }
 }
 
+.exit-sanctuary{
+
+position:fixed;
+
+top:18px;
+right:18px;
+
+z-index:999;
+
+padding:10px 16px;
+
+background:
+rgba(0,0,0,.55);
+
+border:1px solid
+rgba(255,210,140,.25);
+
+border-radius:999px;
+
+color:#d8b48a;
+
+font-family:Georgia,serif;
+
+font-size:.8rem;
+
+cursor:pointer;
+
+backdrop-filter:blur(6px);
+
+transition:.3s ease;
+
+}
+
+.exit-sanctuary:hover{
+
+background:
+rgba(255,210,140,.12);
+
+}
+  
 </style>
 </head>
 <body>
 
+<button
+class="exit-sanctuary"
+onclick="leaveSanctuary()">
+
+❦ Leave Sanctuary ❦
+
+</button>
+  
 <div id="world">
 <div class="fade" id="fade"></div>
 </div>
