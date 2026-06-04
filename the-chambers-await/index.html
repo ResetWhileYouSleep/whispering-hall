@@ -715,9 +715,12 @@ Enter your Sanctuary Key.
 </div>
 
 <input
-type="password"
+type="text"
 id="sanctuaryInput"
-placeholder="Sanctuary Key">
+placeholder="Sanctuary Key"
+autocomplete="off"
+autocapitalize="none"
+spellcheck="false">
 
 <div
 id="sanctuaryError"
@@ -977,7 +980,8 @@ document.getElementById(
 ).value;
 
 if(
-entered === sanctuaryKey
+entered.trim().toLowerCase() ===
+sanctuaryKey.toLowerCase()
 ){
 
 localStorage.setItem(
