@@ -311,6 +311,55 @@ text-shadow:
 animation:memoryReveal 8.6s cubic-bezier(.19,1,.22,1) forwards !important;
 }
 
+.fragment-invitation{
+position:absolute;
+left:50%;
+bottom:2%;
+transform:translateX(-50%);
+
+padding:12px 28px;
+
+border-radius:999px;
+
+background:
+rgba(0,0,0,.58);
+
+border:
+1px solid rgba(216,180,138,.28);
+
+color:#d8b48a;
+
+font-family:Georgia,serif;
+font-size:.88rem;
+letter-spacing:.08em;
+
+cursor:pointer;
+
+z-index:30;
+
+backdrop-filter:blur(8px);
+
+transition:.35s ease;
+}
+
+.fragment-invitation:hover{
+background:
+rgba(216,180,138,.12);
+
+transform:
+translateX(-50%)
+translateY(-2px);
+}
+
+@media(orientation:landscape) and (max-width:950px){
+
+.fragment-invitation{
+bottom:1.5%;
+font-size:.78rem;
+}
+
+}
+  
 @keyframes memoryReveal{
 0%{
 opacity:0;
@@ -1031,6 +1080,13 @@ position:absolute;
 
 <div class="whisper">${c.whisper}</div>
 
+${i === 0 ? `
+<div class="fragment-invitation"
+onclick="openFragment1()">
+✦ Follow The Whisper ✦
+</div>
+` : ``}
+
 `;
 
 world.prepend(chamber);
@@ -1257,6 +1313,40 @@ w.style.animationPlayState='running';
 
 });
 
+function openFragment1(){
+
+document.getElementById(
+'fragment1Modal'
+).style.display='block';
+
+}
+
+function closeFragment1(){
+
+document.getElementById(
+'fragment1Modal'
+).style.display='none';
+
+}
+
+function openFragment2(){
+
+closeFragment1();
+
+document.getElementById(
+'fragment2Modal'
+).style.display='block';
+
+}
+
+function closeFragment2(){
+
+document.getElementById(
+'fragment2Modal'
+).style.display='none';
+
+}
+  
 function leaveSanctuary(){
 
 localStorage.removeItem(
@@ -1270,6 +1360,82 @@ window.location.href =
   
 </script>
 
+<div id="fragment1Modal"
+class="sanctuary-modal">
+
+<div class="sanctuary-modal-content">
+
+<h2>
+Fragment I — The Arrival
+</h2>
+
+<p>
+
+The hall did not announce itself.
+
+It simply waited.
+
+The air carried no command,
+yet something within you
+answered.
+
+Perhaps you had always
+been walking toward this place.
+
+</p>
+
+<a class="threshold-btn"
+onclick="closeFragment1()">
+
+✦ Return To The Hall ✦
+
+</a>
+
+<a class="threshold-btn"
+onclick="openFragment2()">
+
+✦ Unseal The Fragment ✦
+
+</a>
+
+</div>
+</div>
+
+ <div id="fragment2Modal"
+class="sanctuary-modal">
+
+<div class="sanctuary-modal-content">
+
+<h2>
+Fragment II — The Hidden Mark
+</h2>
+
+<p>
+
+Not every mark is carved.
+
+Some are remembered.
+
+Some awaken only when
+a hall recognizes the one
+who has returned.
+
+The whisper was never outside you.
+
+It was waiting.
+
+</p>
+
+<a class="threshold-btn"
+onclick="closeFragment2()">
+
+✦ Return To The Hall ✦
+
+</a>
+
+</div>
+</div>  
+  
 </body>
 </html>
 
