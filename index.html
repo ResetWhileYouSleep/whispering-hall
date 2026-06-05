@@ -293,7 +293,7 @@ transform:translateX(-50%) translateY(0px);
 
 .whisper{
 position:absolute;
-bottom:16%;
+bottom:20%;
 left:50%;
 transform:translateX(-50%);
 max-width:74%;
@@ -320,8 +320,8 @@ left:50%;
 bottom:7%;
 
 transform:translateX(-50%);
-
-padding:12px 28px;
+white-space: nowrap;
+padding:14px 32px;
 
 border-radius:999px;
 
@@ -344,14 +344,26 @@ translateX(-50%)
 translateY(-2px);
 }
 
+.fragment-invitation button{
+    min-width: 320px;
+}
+  
 @media(orientation:landscape) and (max-width:950px){
 
 .fragment-invitation{
 
-bottom:2%;
+bottom:3%;
 
 font-size:.78rem;
 
+}
+
+}
+
+@media (orientation: landscape){
+
+.fragment-invitation button{
+    min-width: 360px;
 }
 
 }
@@ -384,7 +396,7 @@ transform:translateX(-50%) translateY(0px);
 @media(orientation:landscape) and (max-width:950px){
 
 .whisper{
-bottom:6%;
+bottom:14%;
 max-width:54%;
 font-size:.8rem;
 }
