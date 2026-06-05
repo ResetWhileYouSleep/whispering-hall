@@ -1165,9 +1165,13 @@ ${i === 0 ? `
 onclick="openFragment1()">
 ✦ Follow The Whisper ✦
 </div>
+` : i === 1 ? `
+<div class="fragment-invitation"
+onclick="openFragment3()">
+✦ Approach The Veil ✦
+</div>
 ` : ``}
 
-✦ Follow The Whisper ✦
 
 `;
 
@@ -1428,7 +1432,23 @@ document.getElementById(
 ).style.display='none';
 
 }
-  
+
+function openFragment3(){
+
+document.getElementById(
+'fragment3Modal'
+).style.display='block';
+
+}
+
+function closeFragment3(){
+
+document.getElementById(
+'fragment3Modal'
+).style.display='none';
+
+}
+    
 function leaveSanctuary(){
 
 localStorage.removeItem(
@@ -1532,7 +1552,7 @@ Fragment II — The Hidden Mark
 <p>But because the traveler had.</p>
 
 </div>
-
+ 
 <a class="threshold-btn"
 onclick="closeFragment2()">
 
@@ -1543,6 +1563,64 @@ onclick="closeFragment2()">
 </div>
 </div>  
 
+<div id="fragment3Modal"
+class="sanctuary-modal">
+
+<div class="sanctuary-modal-content">
+
+<h2>
+Fragment III — The Forgotten Library
+</h2>
+
+<div class="fragment-text">
+
+<p>The traveler followed a corridor hidden behind drifting veils of dust and light.</p>
+
+<p>Beyond it stood a library without end.</p>
+
+<p>Shelves stretched into darkness.</p>
+
+<p>Thousands of books rested in silence.</p>
+
+<p>Yet no title marked their spines.</p>
+
+<p>“How can knowledge be found if nothing is named?” asked the traveler.</p>
+
+<p>The keeper removed a single volume from the shelf.</p>
+
+<p>Its pages were blank.</p>
+
+<p>“This library does not preserve answers,” said the keeper.</p>
+
+<p>“It preserves questions.”</p>
+
+<p>The traveler opened another book.</p>
+
+<p>Words slowly appeared across the page.</p>
+
+<p>Not written by a distant author.</p>
+
+<p>But drawn from the thoughts the traveler carried within.</p>
+
+<p>Then the traveler understood.</p>
+
+<p>The library had never been forgotten.</p>
+
+<p>Only unread.</p>
+
+</div>
+
+<a class="threshold-btn"
+onclick="closeFragment3()">
+
+✦ Return To The Archive ✦
+
+</a>
+
+</div>
+
+</div>
+    
 </body>
 </html>
 
