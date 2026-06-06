@@ -996,6 +996,27 @@ white-space:normal !important;
   }
 }
 
+/* HALL WITHOUT ECHOES */
+
+body.hall-mode .fragment-invitation{
+left:50%;
+bottom:3%;
+transform:translateX(-50%);
+top:auto;
+right:auto;
+}
+
+@media(max-width:600px){
+body.hall-mode .fragment-invitation{
+bottom:2.5%;
+}
+
+body.hall-mode .whisper{
+bottom:10% !important;
+}
+
+}    
+    
 @media (orientation:landscape) and (max-width:950px){
   body.hall-mode .whisper{
     width:100vw !important;
@@ -1245,6 +1266,11 @@ onclick="openFragment4()">
 <div class="fragment-invitation"
 onclick="openFragment5()">
 ✦ Trace The Memory ✦
+</div>
+` : i === 4 ? `
+<div class="fragment-invitation"
+onclick="openFragment6()">
+✦ Enter The Silence ✦
 </div>
 ` : ``}
 
@@ -1841,6 +1867,66 @@ Fragment V — Those Who Remain
 onclick="closeFragment5()">
 
 ✦ Return To The Names ✦
+
+</a>
+
+</div>
+
+</div>
+
+<div id="fragment6Modal"
+class="sanctuary-modal">
+
+<div class="sanctuary-modal-content">
+
+<h2>
+Fragment VI — The End of the Search
+</h2>
+
+<div class="fragment-text">
+
+<p>Beyond the final door stood a hall unlike all the others.</p>
+
+<p>No whispers.</p>
+
+<p>No voices.</p>
+
+<p>No echoes.</p>
+
+<p>Only stillness.</p>
+
+<p>The traveler waited.</p>
+
+<p>Minutes passed.</p>
+
+<p>Then hours.</p>
+
+<p>Nothing happened.</p>
+
+<p>At last the traveler understood.</p>
+
+<p>The Sanctuary had never been leading them toward a destination.</p>
+
+<p>It had been leading them toward themselves.</p>
+
+<p>The questions remained.</p>
+
+<p>Life remained.</p>
+
+<p>The unknown remained.</p>
+
+<p>Yet something had changed.</p>
+
+<p>The traveler no longer feared silence.</p>
+
+<p>And in that silence, peace quietly entered.</p>
+
+</div>
+
+<a class="threshold-btn"
+onclick="closeFragment6()">
+
+✦ Return To The Silence ✦
 
 </a>
 
