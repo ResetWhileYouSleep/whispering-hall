@@ -911,6 +911,28 @@ text-shadow:0 1px 4px rgba(0,0,0,.88);
 filter:none !important;
 }
 
+@media(max-width:600px){
+body.names-mode .fragment-invitation{
+bottom:3%;
+left:50%;
+transform:translateX(-50%);
+top:auto;
+right:auto;
+}
+
+}
+
+@media(orientation:landscape) and (max-width:950px){
+body.names-mode .fragment-invitation{
+top:65px;
+right:18px;
+left:auto;
+bottom:auto;
+transform:none;
+}
+
+}
+    
 @media(orientation:landscape) and (max-width:950px){
 body.names-mode .whisper{
 bottom:3.5% !important;
@@ -1219,8 +1241,12 @@ onclick="openFragment3()">
 onclick="openFragment4()">
 ✦ Turn The Page ✦
 </div>
+` : i === 3 ? `
+<div class="fragment-invitation"
+onclick="openFragment5()">
+✦ Trace The Memory ✦
+</div>
 ` : ``}
-
 
 `;
 
@@ -1765,6 +1791,62 @@ onclick="closeFragment4()">
 </div>
 
 </div> 
+
+<div id="fragment5Modal"
+class="sanctuary-modal">
+
+<div class="sanctuary-modal-content">
+
+<h2>
+Fragment V — Those Who Remain
+</h2>
+
+<div class="fragment-text">
+
+<p>Countless names covered the walls.</p>
+
+<p>Some belonged to kings.</p>
+
+<p>Some to wanderers.</p>
+
+<p>Some to people no history remembered.</p>
+
+<p>Yet every name had been preserved.</p>
+
+<p>“Who were they?” asked the traveler.</p>
+
+<p>The keeper traced a finger across the stone.</p>
+
+<p>“People who lived.”</p>
+
+<p>“People who loved.”</p>
+
+<p>“People who endured.”</p>
+
+<p>“People who became more than their fears.”</p>
+
+<p>The traveler searched for the greatest name among them.</p>
+
+<p>The keeper shook his head.</p>
+
+<p>“That is not why they remain.”</p>
+
+<p>“Then why?”</p>
+
+<p>“Because they were here.”</p>
+
+</div>
+
+<a class="threshold-btn"
+onclick="closeFragment5()">
+
+✦ Return To The Names ✦
+
+</a>
+
+</div>
+
+</div>
     
 </body>
 </html>
