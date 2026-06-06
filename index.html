@@ -828,7 +828,22 @@ filter:none !important;
 
 }
 
+@media (orientation: landscape) and (max-width:950px){
 
+  body.index-mode .fragment-invitation{
+
+    top:65px;
+    right:18px;
+
+    left:auto;
+    bottom:auto;
+
+    transform:none;
+
+  }
+
+}
+    
 /* ===== CHAMBER OF NAMES PROFILE ===== */
 
 body.names-mode .bg{
@@ -1184,6 +1199,11 @@ onclick="openFragment1()">
 <div class="fragment-invitation"
 onclick="openFragment3()">
 ✦ Approach The Veil ✦
+</div>
+` : i === 2 ? `
+<div class="fragment-invitation"
+onclick="openFragment4()">
+✦ Turn The Page ✦
 </div>
 ` : ``}
 
@@ -1629,6 +1649,51 @@ onclick="closeFragment3()">
 </div>
 
 </div>
+
+<h2>
+Fragment IV — The Living Page
+</h2>
+
+<div class="fragment-text">
+
+<p>At the center of the chamber rested a book unlike any other.</p>
+
+<p>Its pages turned without wind.</p>
+
+<p>Its words shifted without ink.</p>
+
+<p>The traveler opened it.</p>
+
+<p>Every page contained moments from their own life.</p>
+
+<p>Victories.</p>
+
+<p>Regrets.</p>
+
+<p>Forgotten memories.</p>
+
+<p>Roads taken.</p>
+
+<p>Roads abandoned.</p>
+
+<p>Then the traveler reached the final page.</p>
+
+<p>It was blank.</p>
+
+<p>“Why is nothing written here?”</p>
+
+<p>The keeper replied:</p>
+
+<p>“Because it belongs to tomorrow.”</p>
+
+</div>
+
+<a class="threshold-btn"
+onclick="closeFragment4()">
+
+✦ Return To The Index ✦
+
+</a>
     
 </body>
 </html>
